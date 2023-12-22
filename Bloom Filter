@@ -1,0 +1,52 @@
+#include <bits/stdc++.h> 
+using namespace std;
+
+int h1(string s, int arrsize){
+  long long int hash = 0;
+  for(int i=0; i<s.length(); i++){
+    hash = (hash+((int)s[i]));
+    hash = hash % arrsize;
+  }
+  return hash;
+}
+int h2(string s, int arrsize){
+  long long int hash = 0;
+  for(int i=0; i<s.length(); i++){
+    hash = hash + pow(19,i) * s[i];
+    hash = hash % arrsize;
+  }
+  return hash;
+}
+
+bool lookup(bool* bitarray, int arrsize, string s){
+  int a = h1(s,arrsize);
+  int b = h2(s,arrsize);
+
+  if(bitarray[a]&&bitarray[b])
+    return true;
+  else
+    return false;
+}
+
+void insert(bool* bitarray,int arrsize,string s){
+  if(lookup(bitarray,arrsize,s)){
+    cout<<s<<" is already present"<<endl;
+  }
+  else{
+    int a = h1(s,arrsize);
+    int b = h2(s,arrsize);
+    bitarray[a]=true;
+    bitarray[b]=true;
+    cout<<s<<" is inserted"<<endl;
+  }
+}
+
+int main() {
+  bool bitarray[100] = { false }; 
+  int arrSize = 100; 
+  string sarray[5] = { "amarnath","Abisheik","Bharath","vibin","arun"}; 
+  for (int i = 0; i < 5; i++) { 
+      insert(bitarray, arrSize, sarray[i]); 
+  } 
+  return 0; 
+}

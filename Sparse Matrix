@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+  int n,m;
+  cout<<"enter the value of n"<<endl;
+  cin>>n;
+  cout<<"enter the value of m"<<endl;
+  cin>>m;
+  int smatrix[n][m];
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      cout<<"Enter the value of smatrix["<<i<<"]["<<j<<"]"<<endl;
+      cin>>smatrix[i][j];
+    }
+  }
+  int size=0;
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(smatrix[i][j]!=0){
+        size++;
+      }
+    }
+  }
+  int cmatrix[3][size];
+  int k=0;
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      if(smatrix[i][j]!=0){
+        cmatrix[0][k]=i;
+        cmatrix[1][k]=j;
+        cmatrix[2][k]=smatrix[i][j];
+        k++;
+      }
+    }
+  }
+  for(int i=0;i<3;i++){
+    for(int j=0;j<size;j++){
+      cout<<cmatrix[i][j]<<" ";
+    }
+    cout<<"\n";
+  }
+}
